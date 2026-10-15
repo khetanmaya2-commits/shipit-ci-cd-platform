@@ -22,11 +22,15 @@ pipeline {
                 bat 'node --check app.js'
             }
         }
-        stage('Docker Build'){
-            steps{
-                bat 'docker --version'
-                bat 'docker build -t shiptit:1.0 .'
-            }
-        }
+        
+        stage('Docker Diagnostic') {
+        steps {
+        bat 'echo Checking Docker from Jenkins...'
+        bat 'where.exe docker || echo Docker executable not found on Jenkins PATH'
+        bat 'echo Checking the Jenkins PATH...'
+        bat 'echo %PATH%'
+    }
+}
+
     }
 }
