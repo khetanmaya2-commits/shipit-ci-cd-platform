@@ -10,3 +10,7 @@ test('ShipIt application configuration is valid', () => {
     assert.equal(pkg.name, 'shipit-cicd-platform');
     assert.equal(typeof pkg.scripts.test, 'string');
 });
+
+test('demonstrate that Jenkins detects failures', () => {
+    assert.equal(1 + 1, 3);
+});
