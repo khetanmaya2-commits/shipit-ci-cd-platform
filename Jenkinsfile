@@ -33,24 +33,5 @@ stage('Docker Build') {
 }
 
 
-
-stage('Push to Docker Hub') {
-    steps {
-        withCredentials([
-            usernamePassword(
-                credentialsId: 'dockerhub-credentials',
-                usernameVariable: 'DOCKERHUB_USER',
-                passwordVariable: 'DOCKERHUB_TOKEN'
-            )
-        ]) {
-            bat 'powershell -NoProfile -NonInteractive -Command "$env:DOCKERHUB_TOKEN | & $env:DOCKER_BIN login --username $env:DOCKERHUB_USER --password-stdin"'
-
-            bat '"%DOCKER_BIN%" tag shipit:1.0 maya1827/shipit-cicd-platform:latest'
-
-            bat '"%DOCKER_BIN%" push maya1827/shipit-cicd-platform:latest'
-        }
-    }
-}
-
     }
 }
