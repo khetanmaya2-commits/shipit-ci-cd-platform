@@ -23,12 +23,12 @@ pipeline {
             }
         }
         
-        stage('Docker Diagnostic') {
-        steps {
-        bat 'echo Checking Docker from Jenkins...'
-        bat 'where.exe docker || echo Docker executable not found on Jenkins PATH'
-        bat 'echo Checking the Jenkins PATH...'
-        bat 'echo %PATH%'
+        
+stage('Docker Build') {
+    steps {
+        bat 'if not defined DOCKER_BIN exit /b 1'
+        bat '"%DOCKER_BIN%" --version'
+        bat '"%DOCKER_BIN%" build -t shipit:1.0 .'
     }
 }
 
