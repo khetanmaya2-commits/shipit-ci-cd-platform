@@ -34,7 +34,7 @@ stage('Docker Build') {
 
 
 
-stage('Docker Hub Authentication Check') {
+stage('Push to Docker Hub') {
     steps {
         withCredentials([
             usernamePassword(
@@ -44,10 +44,12 @@ stage('Docker Hub Authentication Check') {
             )
         ]) {
             bat '''
-                if not defined DOCKERHUB_USER exit /b 1
-                if not defined DOCKERHUB_TOKEN exit /b 1
-                echo Docker Hub credentials were loaded.
+                powershell -NoProfile -NonInteractive -Command "$ErrorActionPreference = 'Stop'; $env:DOCKERHUB_TOKEN | & $env:DOCKER_BIN login --username $env:DOCKERHUB_USER --password-stdin; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }"
             '''
+
+            bat '"%DOCKER_BIN%" tag shipit:1.0 maya1827/shipit-cicd-platform:latest'
+
+            bat '"%DOCKER_BIN%" push maya1827/shipit-cicd-platform:latest'
         }
     }
 }
