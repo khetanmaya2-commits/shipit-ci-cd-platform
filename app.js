@@ -20,7 +20,7 @@ const server = http.createServer((req, res) => {
     res.end(`
         <h1>ShipIt CI/CD Platform</h1>
         <p>Application deployed successfully and cojduhidb!</p>
-        <p>Automated with Jenkins, Docker and AWS.</p>
+        <p>Automated with Jenkins, Docker and AWS added docker path.</p>
     `);
 });
 
