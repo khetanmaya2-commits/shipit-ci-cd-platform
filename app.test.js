@@ -12,5 +12,5 @@ test('ShipIt application configuration is valid', () => {
 });
 
 test('demonstrate that Jenkins detects failures', () => {
-    assert.equal(1 + 1, 3);
+    assert.equal(1 + 0, 3);
 });
