@@ -22,5 +22,11 @@ pipeline {
                 bat 'node --check app.js'
             }
         }
+        stage('Docker Build'){
+            steps{
+                bat 'docker --version'
+                bat 'docker build -t shiptit:1.0 .'
+            }
+        }
     }
 }
