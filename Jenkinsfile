@@ -24,8 +24,8 @@ pipeline {
         }
         stage('Docker Build'){
             steps{
-                bat 'docker --version'
-                bat 'docker build -t shiptit:1.0 .'
+                bat '"C:\Users\kheta\AppData\Local\Programs\DockerDesktop\resources\bin\docker.exe" --version'
+                bat '"C:\Users\kheta\AppData\Local\Programs\DockerDesktop\resources\bin\docker.exe" build -t shiptit:1.0 .'
             }
         }
     }
